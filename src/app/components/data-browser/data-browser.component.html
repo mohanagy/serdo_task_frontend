@@ -1,0 +1,68 @@
+<mat-card>
+  <mat-card-title>Data Browser</mat-card-title>
+  <mat-card-content>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem">
+      <mat-form-field appearance="outline">
+        <mat-label>Active Integration</mat-label>
+        <mat-select
+          [(ngModel)]="selectedIntegration"
+          (selectionChange)="onIntegrationChange($event.value)"
+        >
+          <mat-option *ngFor="let i of integrations" [value]="i.value">
+            {{ i.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div *ngIf="selectedIntegration">
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem">
+        <mat-form-field appearance="outline">
+          <mat-label>Entity</mat-label>
+          <mat-select
+            [(ngModel)]="selectedEntity"
+            (selectionChange)="onEntityChange($event.value)"
+          >
+            <mat-option *ngFor="let e of entities" [value]="e">{{
+              e
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Search</mat-label>
+          <input matInput [(ngModel)]="searchTerm" />
+          <button
+            matSuffix
+            mat-icon-button
+            (click)="onSearchChange(searchTerm)"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="loadData()">
+          Load Data
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="selectedIntegration == 'github'" style="margin-top: 1rem">
+      <a href="/find-user" target="_blank">Find User</a>
+    </div>
+    <div style="margin-top: 16px; height: 500px" class="ag-theme-alpine">
+      <ag-grid-angular
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        class="ag-theme-alpine"
+        style="width: 100%; height: 100%"
+      >
+      </ag-grid-angular>
+    </div>
+    <div style="margin-top: 16px; text-align: center">
+      <button mat-button (click)="prevPage()">Prev</button>
+      <span>Page {{ currentPage }}</span>
+      <button mat-button (click)="nextPage()">Next</button>
+      <span>(Total: {{ totalRecords }} records)</span>
+    </div>
+  </mat-card-content>
+</mat-card>

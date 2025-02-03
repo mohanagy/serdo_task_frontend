@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="toolbar">
+  <span class="title">GitHub Integration</span>
+  <span class="spacer"></span>
+
+  <button mat-button class="nav-button" routerLink="/home">Home</button>
+  <button mat-button class="nav-button" routerLink="/integration">
+    Integration
+  </button>
+  <button mat-button class="nav-button" routerLink="/data-browser">
+    Data Browser
+  </button>
+
+  <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>

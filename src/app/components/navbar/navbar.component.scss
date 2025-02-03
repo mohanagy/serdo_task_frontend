@@ -1,0 +1,25 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .menu-button {
+    display: inline-flex;
+  }
+
+  @media (min-width: 600px) {
+    .menu-button {
+      display: none;
+    }
+  }
+
+  .nav-button {
+    display: none;
+  }
+
+  @media (min-width: 600px) {
+    .nav-button {
+      display: inline-flex;
+    }
+  }
+}

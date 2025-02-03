@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-title>GitHub OAuth2 Integration</mat-card-title>
+  <mat-card-content>
+    <div *ngIf="!isAuthenticated">
+      <p>You are not connected to GitHub yet.</p>
+      <button mat-raised-button color="primary" (click)="connect()">
+        Connect to GitHub
+      </button>
+    </div>
+    <div *ngIf="isAuthenticated">
+      <p>Welcome back! You are already connected to GitHub.</p>
+      <p *ngIf="user">
+        User: {{ user.username }} DisplayName: {{ user.displayName }}
+      </p>
+    </div>
+  </mat-card-content>
+</mat-card>

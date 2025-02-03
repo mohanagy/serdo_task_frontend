@@ -1,0 +1,73 @@
+<mat-card>
+  <mat-card-title>Find User</mat-card-title>
+  <mat-card-content>
+    <div class="filter-container">
+      <mat-form-field appearance="outline" class="filter-item">
+        <mat-label>User</mat-label>
+        <input
+          matInput
+          [(ngModel)]="filters.user"
+          (ngModelChange)="applyFilters()"
+          placeholder="Enter user"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="filter-item">
+        <mat-label>Repo</mat-label>
+        <input
+          matInput
+          [(ngModel)]="filters.repo"
+          (ngModelChange)="applyFilters()"
+          placeholder="Enter repo"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="filter-item">
+        <mat-label>Start Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="startPicker"
+          [(ngModel)]="filters.startDate"
+          (ngModelChange)="applyFilters()"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="startPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="filter-item">
+        <mat-label>End Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endPicker"
+          [(ngModel)]="filters.endDate"
+          (ngModelChange)="applyFilters()"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="endPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem"></div>
+    <div style="margin-top: 16px; height: 500px" class="ag-theme-alpine">
+      <ag-grid-angular
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        class="ag-theme-alpine"
+        style="width: 100%; height: 100%"
+      >
+      </ag-grid-angular>
+    </div>
+    <div style="margin-top: 16px; text-align: center">
+      <button mat-button (click)="prevPage()">Prev</button>
+      <span>Page {{ currentPage }}</span>
+      <button mat-button (click)="nextPage()">Next</button>
+      <span>(Total: {{ totalRecords }} records)</span>
+    </div>
+  </mat-card-content>
+</mat-card>

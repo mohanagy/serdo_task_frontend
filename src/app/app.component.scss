@@ -1,0 +1,6 @@
+body {
+  background-color: var(
+    --mat-sidenav-content-background-color,
+    var(--mat-sys-background)
+  );
+}

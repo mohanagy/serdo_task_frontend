@@ -1,0 +1,101 @@
+<mat-card class="integration-card">
+  <mat-card-title>GitHub Integration Status</mat-card-title>
+  <mat-card-content>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="display: flex; justify-content: space-between">
+          <div>
+            GitHub OAuth
+            <span
+              *ngIf="isGithubConnected"
+              style="color: green; margin-left: 1rem"
+              >✔ Connected</span
+            >
+            <span
+              *ngIf="!isGithubConnected"
+              style="color: red; margin-left: 1rem"
+              >✘ Not Connected</span
+            >
+          </div>
+          <span *ngIf="isGithubConnected" style="margin-left: 1rem"
+            >Last Connected :{{ user.connectedAt }}
+          </span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div>
+        <p *ngIf="isGithubConnected && user">
+          <strong>User:</strong> {{ user.username }}
+        </p>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="removeIntegration('github')"
+          *ngIf="isGithubConnected"
+        >
+          Remove Integration
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="reconnect('github')"
+          style="margin-left: 1rem"
+          *ngIf="!isGithubConnected"
+        >
+          Reconnect
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="integration-card">
+  <mat-card-title>Airtable Integration Status</mat-card-title>
+  <mat-card-content>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="display: flex; justify-content: space-between">
+          <div>
+            Airtable OAuth
+            <span
+              *ngIf="isAirtableConnected"
+              style="color: green; margin-left: 1rem"
+              >✔ Connected</span
+            >
+            <span
+              *ngIf="!isAirtableConnected"
+              style="color: red; margin-left: 1rem"
+              >✘ Not Connected</span
+            >
+          </div>
+          <span *ngIf="isAirtableConnected" style="margin-left: 1rem"
+            >Last Connected :{{ user.connectedAt }}
+          </span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div>
+        <p *ngIf="isAirtableConnected && user">
+          <strong>User:</strong> {{ user.username }}
+        </p>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="removeIntegration('airtable')"
+          *ngIf="isAirtableConnected"
+        >
+          Remove Integration
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="reconnect('airtable')"
+          style="margin-left: 1rem"
+          *ngIf="!isAirtableConnected"
+        >
+          Reconnect
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-card-content>
+</mat-card>
